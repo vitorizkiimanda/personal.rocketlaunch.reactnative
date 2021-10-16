@@ -1,6 +1,7 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import colors from 'constants/colors';
+import ImageCustom from 'components/ImageCustom';
 
 const Item = props => {
   const {data, index} = props;
@@ -12,7 +13,7 @@ const Item = props => {
   return (
     <View style={styleContainer(index).container}>
       {!!data.mission.missionPatch && (
-        <Image
+        <ImageCustom
           style={styles.imageMissionPatch}
           source={{
             uri: data.mission.missionPatch,

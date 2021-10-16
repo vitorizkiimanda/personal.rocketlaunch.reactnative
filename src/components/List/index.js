@@ -26,6 +26,7 @@ const List = props => {
       renderItem={renderItem}
       keyExtractor={item => item.id}
       onEndReached={onEndReached}
+      onEndReachedThreshold={0.5}
     />
   );
 };

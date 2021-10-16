@@ -7,6 +7,7 @@ const colors = {
   tertiaryHighlight25: 'rgba(221, 124, 134, 0.25)',
 
   light: '#ececec',
+  gray: '#d2d2cf',
   white: '#ffffff',
 };
 
