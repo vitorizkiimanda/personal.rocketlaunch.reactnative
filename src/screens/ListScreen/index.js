@@ -3,14 +3,13 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  Text,
-  View,
   useColorScheme,
 } from 'react-native';
 import {GetLaunches} from 'service/launchService';
 import List from 'components/List';
 import Loading from 'components/Loading';
 import Error from 'components/Error';
+import {BarIndicator} from 'react-native-indicators';
 
 const ListScreen = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -80,15 +79,25 @@ const ListScreen = () => {
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       {renderContent()}
       {stateIsLoadingMore && (
-        <View>
-          <Text>loading more..</Text>
-        </View>
+        <BarIndicator
+          color="#f00"
+          count={4}
+          size={20}
+          style={styles.barIndicator}
+          interaction
+          animationDuration={1000}
+        />
       )}
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  barIndicator: {
+    flex: 0,
+    marginBottom: 8,
+    marginTop: 8,
+  },
   containerSafeAreaView: {
     backgroundColor: '#ff0',
     flex: 1,
