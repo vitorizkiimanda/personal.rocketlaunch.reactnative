@@ -10,6 +10,7 @@ import List from 'components/List';
 import Loading from 'components/Loading';
 import Error from 'components/Error';
 import {BarIndicator} from 'react-native-indicators';
+import colors from 'constants/colors';
 
 const ListScreen = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -80,7 +81,7 @@ const ListScreen = () => {
       {renderContent()}
       {stateIsLoadingMore && (
         <BarIndicator
-          color="#f00"
+          color={colors.primary}
           count={4}
           size={20}
           style={styles.barIndicator}
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   containerSafeAreaView: {
-    backgroundColor: '#ff0',
+    backgroundColor: colors.light,
     flex: 1,
   },
 });

@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
+import colors from 'constants/colors';
 
 const Item = props => {
   const {data, index} = props;
@@ -10,17 +11,23 @@ const Item = props => {
 
   return (
     <View style={styleContainer(index).container}>
-      <Text>{data.id}</Text>
-      <Text>{data.isBooked.toString()}</Text>
+      {!!data.mission.missionPatch && (
+        <Image
+          style={styles.imageMissionPatch}
+          source={{
+            uri: data.mission.missionPatch,
+          }}
+        />
+      )}
+      <View style={styles.containerText}>
+        <Text style={styles.textTitle}>{data.mission.name}</Text>
+        <Text style={styles.textDesc}>site: {data.site}</Text>
 
-      <Text style={styles.textTitle}>mission : </Text>
-      <Text>{data.mission.missionPatch}</Text>
-      <Text>{data.mission.name}</Text>
-
-      <Text>rocket : </Text>
-      <Text>{data.rocket.id}</Text>
-      <Text>{data.rocket.name}</Text>
-      <Text>{data.rocket.type}</Text>
+        <Text style={[styles.textSubTitle, styles.marginTop8]}>Rocket</Text>
+        <Text style={styles.textDesc}>
+          {`${data.rocket.name} [${data.rocket.type}]`}
+        </Text>
+      </View>
     </View>
   );
 };
@@ -28,14 +35,40 @@ const Item = props => {
 const styleContainer = index =>
   StyleSheet.create({
     container: {
-      backgroundColor: '#f00',
+      alignItems: 'center',
+      backgroundColor: colors.white,
+      borderRadius: 8,
+      flexDirection: 'row',
+      marginHorizontal: 16,
       marginTop: index > 0 ? 16 : 0,
-      flex: 1,
+      padding: 16,
     },
   });
 
 const styles = StyleSheet.create({
+  containerText: {
+    flex: 1,
+  },
+  imageMissionPatch: {
+    height: 48,
+    marginRight: 16,
+    width: 48,
+  },
+  marginTop8: {
+    marginTop: 8,
+  },
+  textDesc: {
+    color: colors.secondary,
+    fontSize: 12,
+    fontWeight: '600',
+  },
+  textSubTitle: {
+    color: colors.primary,
+    fontSize: 14,
+    fontWeight: '900',
+  },
   textTitle: {
+    color: colors.primary,
     fontSize: 16,
     fontWeight: '900',
   },
