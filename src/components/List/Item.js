@@ -41,7 +41,8 @@ const styleContainer = index =>
       borderRadius: 8,
       flexDirection: 'row',
       marginHorizontal: 16,
-      marginTop: index > 0 ? 16 : 0,
+      marginBottom: 16,
+      marginTop: index === 0 ? 16 : 0,
       padding: 16,
     },
   });
