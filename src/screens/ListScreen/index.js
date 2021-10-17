@@ -3,14 +3,14 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  Text,
-  View,
   useColorScheme,
 } from 'react-native';
 import {GetLaunches} from 'service/launchService';
 import List from 'components/List';
 import Loading from 'components/Loading';
 import Error from 'components/Error';
+import {BarIndicator} from 'react-native-indicators';
+import colors from 'constants/colors';
 
 const ListScreen = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -32,13 +32,16 @@ const ListScreen = () => {
   }, []);
 
   const getData = async () => {
+    setIsLoading(true);
+    setIsLoadingMore(false);
+    setIsError(false);
     try {
       const rawData = await GetLaunches(10, null);
       const {launches = {}} = rawData.data;
       setLaunches(launches);
       setIsLoading(false);
     } catch (err) {
-      console.log('err', err, err.message, err.statusCode, err.status);
+      //   console.log('err', err, err.message, err.statusCode, err.status);
       setIsError(false);
     }
   };
@@ -59,7 +62,7 @@ const ListScreen = () => {
       setLaunches(newDataLaunches);
       setIsLoadingMore(false);
     } catch (err) {
-      console.log('err', err, err.message, err.statusCode, err.status);
+      //   console.log('err', err, err.message, err.statusCode, err.status);
       setIsError(false);
     }
   };
@@ -67,7 +70,7 @@ const ListScreen = () => {
   // render UI
   const renderContent = () => {
     if (stateIsError) {
-      return <Error />;
+      return <Error onReload={getData} />;
     }
     if (stateIsLoading) {
       return <Loading />;
@@ -80,17 +83,27 @@ const ListScreen = () => {
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       {renderContent()}
       {stateIsLoadingMore && (
-        <View>
-          <Text>loading more..</Text>
-        </View>
+        <BarIndicator
+          color={colors.primary}
+          count={4}
+          size={20}
+          style={styles.barIndicator}
+          interaction
+          animationDuration={1000}
+        />
       )}
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  barIndicator: {
+    flex: 0,
+    marginBottom: 8,
+    marginTop: 8,
+  },
   containerSafeAreaView: {
-    backgroundColor: '#ff0',
+    backgroundColor: colors.light,
     flex: 1,
   },
 });
