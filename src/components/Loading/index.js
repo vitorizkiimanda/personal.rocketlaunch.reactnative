@@ -19,7 +19,7 @@ const Loading = () => {
   );
   return (
     <ScrollView>
-      <SkeletonPlaceholder backgroundColor={colors.tertiaryHighlight50}>
+      <SkeletonPlaceholder backgroundColor={colors.gray}>
         {dummyData.map((_, index) => skeletonItem(index))}
       </SkeletonPlaceholder>
     </ScrollView>

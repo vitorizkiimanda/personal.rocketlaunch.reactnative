@@ -32,13 +32,16 @@ const ListScreen = () => {
   }, []);
 
   const getData = async () => {
+    setIsLoading(true);
+    setIsLoadingMore(false);
+    setIsError(false);
     try {
       const rawData = await GetLaunches(10, null);
       const {launches = {}} = rawData.data;
       setLaunches(launches);
       setIsLoading(false);
     } catch (err) {
-      console.log('err', err, err.message, err.statusCode, err.status);
+      //   console.log('err', err, err.message, err.statusCode, err.status);
       setIsError(false);
     }
   };
@@ -59,7 +62,7 @@ const ListScreen = () => {
       setLaunches(newDataLaunches);
       setIsLoadingMore(false);
     } catch (err) {
-      console.log('err', err, err.message, err.statusCode, err.status);
+      //   console.log('err', err, err.message, err.statusCode, err.status);
       setIsError(false);
     }
   };
@@ -67,7 +70,7 @@ const ListScreen = () => {
   // render UI
   const renderContent = () => {
     if (stateIsError) {
-      return <Error />;
+      return <Error onReload={getData} />;
     }
     if (stateIsLoading) {
       return <Loading />;
