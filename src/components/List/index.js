@@ -27,6 +27,7 @@ const List = props => {
       keyExtractor={item => item.id}
       onEndReached={onEndReached}
       onEndReachedThreshold={0.5}
+      accessibilityLabel="flatlist"
     />
   );
 };

@@ -10,7 +10,10 @@ const Error = props => {
       <Text style={styles.textDesc}>failed to get data</Text>
 
       {onReload && (
-        <TouchableOpacity style={styles.button} onPress={onReload}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={onReload}
+          accessibilityLabel="content button">
           <Text style={styles.textButton}>Try Again</Text>
         </TouchableOpacity>
       )}

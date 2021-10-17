@@ -12,7 +12,7 @@ const Item = props => {
 
   return (
     <View style={styleContainer(index).container}>
-      {!!data.mission.missionPatch && (
+      {!!data?.mission?.missionPatch && (
         <ImageCustom
           style={styles.imageMissionPatch}
           source={{
