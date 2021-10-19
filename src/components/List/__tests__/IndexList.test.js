@@ -19,13 +19,16 @@ describe('List UI', () => {
         site: 'abcd',
       },
     ];
-    let ref = null; // ref => { current: null }
 
     const {getByA11yLabel} = render(
-      <List data={mockData} loadMore={mockLoadMore} ref={ref} />,
+      <List data={mockData} loadMore={mockLoadMore} />,
     );
     const flatlist = getByA11yLabel('flatlist');
     expect(flatlist.children).toHaveLength(1);
+
+    jest.useFakeTimers();
+
+    flatlist.props.onEndReached();
   });
   test('rendered with no data', () => {
     render(<List />);
