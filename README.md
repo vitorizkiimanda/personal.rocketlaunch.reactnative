@@ -1,7 +1,3 @@
-# Kumparan Mobile Developer Technical Test
-
-This project was created by [Vito Rizki imanda](https://github.com/vitorizkiimanda) for Kumparan Mobile Developer Technical Test.
-
 ## Plugins and Framework
 
 This project is built with these plugins and frameworks:

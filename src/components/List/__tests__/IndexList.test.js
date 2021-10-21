@@ -29,6 +29,7 @@ describe('List UI', () => {
     jest.useFakeTimers();
 
     flatlist.props.onEndReached();
+    expect(mockLoadMore).toBeCalledTimes(1);
   });
   test('rendered with no data', () => {
     render(<List />);
